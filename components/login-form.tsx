@@ -32,27 +32,27 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Inicia sesión en tu cuenta</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Ingresa tus credenciales para acceder al simulador
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form action={formAction}>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email">Correo electrónico</FieldLabel>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="estudiante@poli.edu.co"
                   required
                   defaultValue={TEST_USER.email}
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel htmlFor="password">Contraseña</FieldLabel>
                 <Input
                   id="password"
                   name="password"
@@ -71,7 +71,7 @@ export function LoginForm({
                       className="h-5 w-5 animate-spin"
                     />
                   ) : (
-                    "Login"
+                    "Ingresar"
                   )}
                 </Button>
 

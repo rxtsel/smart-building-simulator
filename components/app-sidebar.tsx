@@ -17,13 +17,13 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   DashboardSquare01Icon,
-  LayoutBottomIcon,
   Logout as LogoutIcon,
   BulbChargingIcon,
 } from "@hugeicons/core-free-icons"
 import Link from "next/link"
 import { signOut } from "@/app/actions"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 const data = {
   navMain: [
@@ -51,11 +51,11 @@ const data = {
       url: "/dashboard#sistemas",
       items: [
         {
-          title: "Iluminacion",
+          title: "Iluminación",
           url: "/dashboard#sistemas",
         },
         {
-          title: "Climatizacion",
+          title: "Climatización",
           url: "/dashboard#sistemas",
         },
         {
@@ -64,9 +64,15 @@ const data = {
         },
       ],
     },
+    {
+      title: "Acerca del proyecto",
+      url: "/acerca",
+    },
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname()
+
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -84,7 +90,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </div>
               <div className="flex flex-col gap-0.5 leading-none">
                 <span className="font-medium">Politécnico Grancolombiano</span>
-                <span>Simulador MVP</span>
+                <span>Simulador web</span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -96,6 +102,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
+                  isActive={pathname === item.url}
                   render={<Link href={item.url} className="font-medium" />}
                 >
                   <SectionIcon title={item.title} />
@@ -106,7 +113,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
                         <SidebarMenuSubButton
-                          isActive={item.isActive}
+                          isActive={
+                            pathname === "/dashboard" && Boolean(item.isActive)
+                          }
                           render={<Link href={item.url} />}
                         >
                           {item.title}
@@ -135,7 +144,7 @@ export function LogoutButton() {
     <form action={formAction}>
       <SidebarMenuButton type="submit" disabled={isPending}>
         <HugeiconsIcon icon={LogoutIcon} strokeWidth={2} />
-        Logout
+        Cerrar sesión
       </SidebarMenuButton>
     </form>
   )
@@ -150,5 +159,5 @@ function SectionIcon({ title }: { title: string }) {
     return <HugeiconsIcon icon={BulbChargingIcon} strokeWidth={2} />
   }
 
-  return <HugeiconsIcon icon={BulbChargingIcon} strokeWidth={2} />
+  return <HugeiconsIcon icon={DashboardSquare01Icon} strokeWidth={2} />
 }

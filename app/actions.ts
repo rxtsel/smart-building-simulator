@@ -25,7 +25,7 @@ export async function signIn(_prevState: SignInState, formData: FormData) {
 
   if (email !== TEST_USER.email || password !== TEST_USER.password) {
     return {
-      error: ["Invalid email or password"],
+      error: ["Correo o contraseña inválidos"],
     }
   }
 

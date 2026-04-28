@@ -27,17 +27,17 @@ import { useTheme } from "next-themes"
 const alerts = [
   {
     title: "Alerta de humo en el piso 3",
-    detail: "Se recomienda revisar sensores y protocolo de evacuacion.",
+    detail: "Se recomienda revisar sensores y protocolo de evacuación.",
     severity: "Alta",
   },
   {
     title: "Acceso no autorizado en laboratorio",
-    detail: "La camara del pasillo detecto movimiento fuera de horario.",
-    severity: "Critica",
+    detail: "La cámara del pasillo detectó movimiento fuera de horario.",
+    severity: "Crítica",
   },
   {
-    title: "Consumo elevado en climatizacion",
-    detail: "La demanda termica supera el promedio operativo esperado.",
+    title: "Consumo elevado en climatización",
+    detail: "La demanda térmica supera el promedio operativo esperado.",
     severity: "Media",
   },
 ] as const
@@ -46,7 +46,7 @@ type AlertEntry = {
   id: string
   title: string
   detail: string
-  severity: "Critica" | "Alta" | "Media"
+  severity: "Crítica" | "Alta" | "Media"
   createdAt: string
 }
 
@@ -55,7 +55,7 @@ const INITIAL_ALERT: AlertEntry = {
   title: alerts[0].title,
   detail: alerts[0].detail,
   severity: alerts[0].severity,
-  createdAt: "01:12 PM",
+  createdAt: "13:12",
 }
 
 export function SmartBuildingDashboard() {
@@ -69,7 +69,7 @@ export function SmartBuildingDashboard() {
   const [alertLog, setAlertLog] = React.useState<AlertEntry[]>([INITIAL_ALERT])
 
   const activeAlert = alertLog[0] ?? null
-  const comfort = temperature >= 20 && temperature <= 24 ? "Optima" : "Ajustar"
+  const comfort = temperature >= 20 && temperature <= 24 ? "Óptima" : "Ajustar"
   const buildingStatus = getBuildingStatus({
     lightsOn,
     occupancy,
@@ -110,12 +110,12 @@ export function SmartBuildingDashboard() {
             <CardTitle>Estado general del edificio</CardTitle>
             <CardDescription>
               Vista resumida del comportamiento del edificio inteligente en esta
-              simulacion.
+              simulación.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <StatusCard
-              label="Operacion"
+              label="Operación"
               value={buildingStatus.label}
               hint={buildingStatus.description}
               tone={buildingStatus.tone}
@@ -123,18 +123,18 @@ export function SmartBuildingDashboard() {
               icon={CheckmarkCircle02Icon}
             />
             <StatusCard
-              label="Iluminacion"
+              label="Iluminación"
               value={lightsOn ? "Encendida" : "Apagada"}
-              hint={lightsOn ? "Aulas y pasillos activos" : "Modo ahorro"}
+              hint={lightsOn ? "Aulas y pasillos activos" : "Modo de ahorro"}
               tone={lightsOn ? "success" : "muted"}
-              badge={lightsOn ? "On" : "Off"}
+              badge={lightsOn ? "Activa" : "Apagada"}
               icon={BulbChargingIcon}
             />
             <StatusCard
               label="Temperatura"
               value={`${temperature}°C`}
               hint={`Confort ${comfort.toLowerCase()}`}
-              tone={comfort === "Optima" ? "success" : "warning"}
+              tone={comfort === "Óptima" ? "success" : "warning"}
               badge={comfort}
               icon={ThermometerIcon}
             />
@@ -153,12 +153,12 @@ export function SmartBuildingDashboard() {
           </CardContent>
           <CardFooter className="flex flex-col items-start gap-3 border-t border-border/60 pt-6 md:flex-row md:items-center md:justify-between">
             <p className="text-sm text-muted-foreground">
-              Ocupacion actual simulada:{" "}
+              Ocupación actual simulada:{" "}
               <span className="font-medium text-foreground">{occupancy}%</span>
             </p>
             <div className="flex flex-wrap gap-2">
               <Button variant="outline" onClick={toggleDayNightMode}>
-                {isNightMode ? "Modo dia" : "Modo noche"}
+                {isNightMode ? "Modo día" : "Modo noche"}
               </Button>
               <Button onClick={simulateAlert}>Simular alerta</Button>
             </div>
@@ -167,9 +167,9 @@ export function SmartBuildingDashboard() {
 
         <Card className="border border-border/60">
           <CardHeader>
-            <CardTitle>Ocupacion simulada</CardTitle>
+            <CardTitle>Ocupación simulada</CardTitle>
             <CardDescription>
-              Distribucion estimada de personas dentro del edificio.
+              Distribución estimada de personas dentro del edificio.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
@@ -223,8 +223,8 @@ export function SmartBuildingDashboard() {
           </CardHeader>
           <CardContent className="flex flex-col gap-5">
             <ControlRow
-              title="Iluminacion"
-              description="Encender o apagar la iluminacion general."
+              title="Iluminación"
+              description="Encender o apagar la iluminación general."
               value={lightsOn ? "Activa" : "Desactivada"}
               action={
                 <Button
@@ -255,7 +255,7 @@ export function SmartBuildingDashboard() {
                 <div>
                   <p className="text-sm font-medium">Temperatura</p>
                   <p className="text-sm text-muted-foreground">
-                    Ajusta la climatizacion general del edificio.
+                    Ajusta la climatización general del edificio.
                   </p>
                 </div>
                 <span className="rounded-full bg-muted px-3 py-1 text-sm font-medium">
@@ -275,9 +275,9 @@ export function SmartBuildingDashboard() {
             <div className="grid gap-2">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-sm font-medium">Ocupacion simulada</p>
+                  <p className="text-sm font-medium">Ocupación simulada</p>
                   <p className="text-sm text-muted-foreground">
-                    Define cuanta actividad hay dentro del edificio.
+                    Define cuánta actividad hay dentro del edificio.
                   </p>
                 </div>
                 <span className="rounded-full bg-muted px-3 py-1 text-sm font-medium">
@@ -306,16 +306,16 @@ export function SmartBuildingDashboard() {
           </CardHeader>
           <CardContent className="grid gap-4">
             <SystemPanel
-              title="Iluminacion"
+              title="Iluminación"
               description="Circuitos de zonas comunes y aulas"
               status={lightsOn ? "Normal" : "Ahorro"}
               statusTone={lightsOn ? "success" : "muted"}
             />
             <SystemPanel
-              title="Climatizacion"
+              title="Climatización"
               description="Temperatura objetivo del edificio"
               status={`${temperature}°C`}
-              statusTone={comfort === "Optima" ? "success" : "warning"}
+              statusTone={comfort === "Óptima" ? "success" : "warning"}
             />
             <SystemPanel
               title="Seguridad"
@@ -330,19 +330,19 @@ export function SmartBuildingDashboard() {
       <section id="alertas" className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
         <Card className="border border-border/60">
           <CardHeader>
-            <CardTitle>Simulacion de alertas</CardTitle>
+            <CardTitle>Simulación de alertas</CardTitle>
             <CardDescription>
-              Genera eventos para mostrar la reaccion del sistema.
+              Genera eventos para mostrar la reacción del sistema.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="rounded-3xl border border-dashed border-border bg-muted/40 p-4">
               <div className="mb-3 flex items-center gap-2">
                 <HugeiconsIcon icon={Alert02Icon} strokeWidth={2} />
-                <p className="font-medium">Proxima accion recomendada</p>
+                <p className="font-medium">Próxima acción recomendada</p>
               </div>
               <p className="text-sm text-muted-foreground">
-                Usa el boton para disparar una alerta y actualizar el estado del
+                Usa el botón para disparar una alerta y actualizar el estado del
                 tablero en tiempo real.
               </p>
             </div>
@@ -359,7 +359,7 @@ export function SmartBuildingDashboard() {
           <CardHeader>
             <CardTitle>Historial reciente</CardTitle>
             <CardDescription>
-              Eventos reportados por el motor de simulacion.
+              Eventos reportados por el motor de simulación.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
@@ -516,7 +516,7 @@ function StatusPill({
 }
 
 function getSeverityTone(severity: AlertEntry["severity"]): StatusTone {
-  if (severity === "Critica") {
+  if (severity === "Crítica") {
     return "danger"
   }
 
@@ -543,10 +543,7 @@ function createAlertEntry(
 function formatSimulationTime(date: Date) {
   const hours = date.getHours()
   const minutes = String(date.getMinutes()).padStart(2, "0")
-  const period = hours >= 12 ? "PM" : "AM"
-  const normalizedHours = hours % 12 || 12
-
-  return `${String(normalizedHours).padStart(2, "0")}:${minutes} ${period}`
+  return `${String(hours).padStart(2, "0")}:${minutes}`
 }
 
 function getBuildingStatus({
@@ -563,7 +560,7 @@ function getBuildingStatus({
   if (activeAlert) {
     return {
       label: "Alerta",
-      description: "Se requiere atencion sobre el evento mas reciente.",
+      description: "Se requiere atención sobre el evento más reciente.",
       tone: getSeverityTone(activeAlert.severity),
     } as const
   }
@@ -578,8 +575,8 @@ function getBuildingStatus({
 
   if (!lightsOn && occupancy > 50) {
     return {
-      label: "Revision",
-      description: "La ocupacion es alta para el modo de ahorro.",
+      label: "Revisión",
+      description: "La ocupación es alta para el modo de ahorro.",
       tone: "warning",
     } as const
   }
