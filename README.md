@@ -16,32 +16,6 @@ The application currently includes:
 - Simulated alerts
 - A project overview page with academic context and risk-management summary
 
-Charts are intentionally not part of the current scope.
-
-## Main features
-
-### Dashboard
-
-The dashboard is focused on the minimum viable product for the final delivery:
-
-- General building status
-- Lighting on/off state
-- Temperature state
-- Security active/inactive state
-- Simulated occupancy
-- Alert simulation
-- Day/night mode toggle with `next-themes`
-
-### Project page
-
-The `About project` page explains:
-
-- Why the project exists
-- The academic context
-- The risk-management approach
-- Prioritized project risks
-- Team members
-
 ## Tech stack
 
 - Next.js 16
@@ -71,28 +45,6 @@ Open the app at:
 
 ```text
 http://localhost:3000
-```
-
-## Available scripts
-
-```bash
-pnpm dev
-pnpm build
-pnpm start
-pnpm lint
-pnpm typecheck
-pnpm format
-```
-
-## Demo access
-
-The project uses a simple mock authentication flow for demonstration purposes.
-
-Default credentials:
-
-```text
-Email: test@test.co
-Password: Test123@
 ```
 
 ## Project structure
