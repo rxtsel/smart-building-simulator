@@ -82,8 +82,8 @@ export default function Page() {
                 </p>
               </div>
               <div className="rounded-3xl bg-muted/50 p-4">
-                <p className="font-medium">Fecha del documento</p>
-                <p className="text-muted-foreground">14-04-2026</p>
+                <p className="font-medium">Fecha de entrega</p>
+                <p className="text-muted-foreground">28-04-2026</p>
               </div>
               <div className="rounded-3xl bg-muted/50 p-4">
                 <p className="font-medium">Institución</p>
