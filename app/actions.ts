@@ -5,6 +5,12 @@ import { sleep, TEST_USER } from "@/lib/utils"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
+type SignInState =
+  | {
+      error?: string[]
+    }
+  | undefined
+
 /**
  * Handles the sign-in process.
  *
@@ -12,7 +18,7 @@ import { redirect } from "next/navigation"
  * @param formData - The form data containing the user's email and password.
  * @returns An object containing an error message if the sign-in fails, otherwise redirects to the dashboard.
  */
-export async function signIn(_prevState: any, formData: FormData) {
+export async function signIn(_prevState: SignInState, formData: FormData) {
   await sleep(1000)
 
   const { email, password } = Object.fromEntries(formData)

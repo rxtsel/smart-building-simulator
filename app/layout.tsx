@@ -14,11 +14,11 @@ const fontMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Smart Building Simulator · Politécnico Grancolombiano",
-    template: "%s · Smart Building Simulator",
+    default: "Simulador edificio inteligente · Politécnico Grancolombiano",
+    template: "%s · Simulador edificio inteligente",
   },
   description:
-    "Project for Politécnico Grancolombiano. Entrega Final. Gerencia de projectos informáticos",
+    "Proyecto para Politécnico Grancolombiano. Entrega Final. Gerencia de projectos informáticos",
 }
 
 export default function RootLayout({
